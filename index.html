@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo à TI | Greenn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #000000;
+            --color-surface: #1d1d1f;
+            --color-text: #f5f5f7;
+            --color-text-secondary: #86868b;
+            --color-accent: #0071e3;
+            --color-accent-hover: #0077ed;
+            --color-success: #30d158;
+            --color-warning: #ff9f0a;
+            --color-danger: #ff453a;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 113, 227, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        /* Equipment Grid */
+        .equipment-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .equipment-card {
+            background: var(--color-surface);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .equipment-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .equipment-code {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .equipment-name {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Flow Cards */
+        .flow-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 113, 227, 0.03) 50%, transparent 100%);
+        }
+
+        .flow-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .flow-card {
+            background: var(--color-surface);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            /* Added display flex for better card layout */
+            display: flex;
+            flex-direction: column;
+            min-height: 350px;
+        }
+
+        .flow-card::after {
+            content: '→';
+            position: absolute;
+            right: 2rem;
+            bottom: 2rem;
+            font-size: 2rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--color-accent);
+        }
+
+        .flow-card:hover {
+            transform: scale(1.02);
+            border-color: var(--color-accent);
+            /* Added shadow for better hover effect */
+            box-shadow: 0 20px 60px rgba(0, 113, 227, 0.3);
+        }
+
+        .flow-card:hover::after {
+            opacity: 1;
+            right: 1.5rem;
+        }
+
+        /* New styles for better flow card structure */
+        .flow-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .flow-badge.onboarding {
+            background: rgba(48, 209, 88, 0.15);
+            color: var(--color-success);
+        }
+
+        .flow-badge.offboarding {
+            background: rgba(255, 69, 58, 0.15);
+            color: var(--color-danger);
+        }
+
+        .flow-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .flow-card .flow-steps {
+            list-style: none;
+            flex-grow: 1;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            line-height: 2;
+        }
+
+        .flow-card .flow-steps li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .flow-card .flow-steps li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        .flow-card-actions {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-start-flow {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: var(--font-primary);
+        }
+
+        .btn-start-flow:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.4);
+        }
+
+        .btn-start-flow::after {
+            content: '▶';
+            font-size: 0.75rem;
+        }
+
+        /* Rules Section */
+        .rules-section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .rule-card {
+            background: var(--color-surface);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .rule-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .rule-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-secondary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .flow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .equipment-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Systems Section */
+        .systems-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .system-card {
+            background: var(--color-surface);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-success));
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .system-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 113, 227, 0.3);
+            border-color: var(--color-accent);
+        }
+
+        .system-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .system-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            filter: grayscale(0.3);
+            transition: filter 0.3s ease;
+        }
+
+        .system-card:hover .system-icon {
+            filter: grayscale(0);
+        }
+
+        .system-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .system-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Workflow Modal */
+        .workflow-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .workflow-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .workflow-content {
+            background: var(--color-surface);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .workflow-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .workflow-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-success));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .workflow-steps {
+            list-style: none;
+            counter-reset: workflow-counter;
+        }
+
+        .workflow-step {
+            counter-increment: workflow-counter;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 3px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 5rem;
+            opacity: 0.4;
+            transition: all 0.5s ease;
+        }
+
+        .workflow-step.active {
+            opacity: 1;
+            border-left-color: var(--color-accent);
+            background: rgba(0, 113, 227, 0.1);
+            transform: translateX(10px);
+        }
+
+        .workflow-step.completed {
+            opacity: 0.7;
+            border-left-color: var(--color-success);
+        }
+
+        .workflow-step::before {
+            content: counter(workflow-counter);
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: all 0.5s ease;
+        }
+
+        .workflow-step.active::before {
+            background: var(--color-accent);
+            box-shadow: 0 0 20px var(--color-accent);
+        }
+
+        .workflow-step.completed::before {
+            content: '✓';
+            background: var(--color-success);
+        }
+
+        /* Enhanced workflow modal styles */
+        .workflow-step h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .workflow-step p {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .step-timer {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+        }
+
+        .workflow-step.active .step-timer {
+            color: var(--color-accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .workflow-actions {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-family: var(--font-primary);
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-text);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Workflow Report */
+        .workflow-report {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .workflow-report.active {
+            display: block;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(48, 209, 88, 0.1), rgba(0, 113, 227, 0.1));
+            border-radius: 16px;
+        }
+
+        .report-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .report-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .report-item {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .report-item:last-child {
+            border-bottom: none;
+        }
+
+        .report-status {
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .workflow-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .workflow-step {
+                padding-left: 4rem;
+            }
+
+            .workflow-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">TI Greenn</div>
+            <ul class="nav-links">
+                <li><a href="#equipamentos">Equipamentos</a></li>
+                <li><a href="#onboarding">Onboarding</a></li>
+                <li><a href="#offboarding">Offboarding</a></li>
+                <li><a href="#regras">Regras</a></li>
+                <li><a href="#sistemas">Sistemas</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bem-vindo à TI</h1>
+            <p>Criando caminhos através da inovação</p>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipamentos" class="equipment-section fade-in">
+        <h2 class="section-title">Identificação de Equipamentos</h2>
+        <div class="equipment-grid">
+            <div class="equipment-card">
+                <div class="equipment-icon">💻</div>
+                <div class="equipment-code">NT</div>
+                <div class="equipment-name">Notebook</div>
+            </div>
+            <div class="equipment-card">
+                <div class="equipment-icon">📱</div>
+                <div class="equipment-code">CL</div>
+                <div class="equipment-name">Celulares</div>
+            </div>
+            <div class="equipment-card">
+                <div class="equipment-icon">🎧</div>
+                <div class="equipment-code">FN</div>
+                <div class="equipment-name">Fones</div>
+            </div>
+            <div class="equipment-card">
+                <div class="equipment-icon">🖥️</div>
+                <div class="equipment-code">MT</div>
+                <div class="equipment-name">Monitores</div>
+            </div>
+            <div class="equipment-card">
+                <div class="equipment-icon">💎</div>
+                <div class="equipment-code">MB</div>
+                <div class="equipment-name">MacBook</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Systems Section -->
+    <section id="sistemas" class="systems-section fade-in">
+        <h2 class="section-title">Nossos Sistemas</h2>
+        <div class="systems-grid">
+            <div class="system-card" data-system="glpi">
+                <div class="system-icon">🎫</div>
+                <h3>GLPI</h3>
+                <p>Sistema de chamados e gestão de TI</p>
+            </div>
+            <div class="system-card" data-system="jumpcloud">
+                <div class="system-icon">☁️</div>
+                <h3>JumpCloud</h3>
+                <p>Gerenciamento de identidades e acessos</p>
+            </div>
+            <div class="system-card" data-system="tutoriais">
+                <div class="system-icon">📚</div>
+                <h3>Tutoriais</h3>
+                <p>Guias e documentação técnica</p>
+            </div>
+            <div class="system-card" data-system="scripts">
+                <div class="system-icon">⚙️</div>
+                <h3>Scripts</h3>
+                <p>Automações e ferramentas úteis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flow Section -->
+    <section id="onboarding" class="flow-section">
+        <div class="flow-container fade-in">
+            <h2 class="section-title">Fluxos de Trabalho</h2>
+            <div class="flow-grid">
+                <!-- Onboarding Com Equipamento -->
+                <div class="flow-card">
+                    <span class="flow-badge onboarding">✅ Onboarding</span>
+                    <h3>Com Equipamento</h3>
+                    <ul class="flow-steps">
+                        <li>Notificação de contratação pelo RH</li>
+                        <li>Criar e vincular acessos (e-mail e permissões)</li>
+                        <li>Avaliar e preparar equipamento adequado</li>
+                        <li>Configurar sistemas e realizar testes</li>
+                        <li>Enviar credenciais ao colaborador</li>
+                        <li>Entregar equipamento no dia do onboarding</li>
+                        <li>Emitir e enviar termo de responsabilidade</li>
+                    </ul>
+                    <!-- Added button to start workflow -->
+                    <div class="flow-card-actions">
+                        <button class="btn-start-flow" data-workflow="onboarding-com">
+                            Iniciar Fluxo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Onboarding Sem Equipamento -->
+                <div class="flow-card">
+                    <span class="flow-badge onboarding">✅ Onboarding</span>
+                    <h3>Sem Equipamento</h3>
+                    <ul class="flow-steps">
+                        <li>Notificação de contratação pelo RH</li>
+                        <li>Criar e vincular acessos</li>
+                        <li>Enviar credenciais (e-mail, sistemas e acessos)</li>
+                    </ul>
+                    <!-- Added button to start workflow -->
+                    <div class="flow-card-actions">
+                        <button class="btn-start-flow" data-workflow="onboarding-sem">
+                            Iniciar Fluxo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offboarding -->
+                <div class="flow-card">
+                    <span class="flow-badge offboarding">🔥 Offboarding</span>
+                    <h3>Saída de Colaborador</h3>
+                    <ul class="flow-steps">
+                        <li>Notificação de desligamento pelo RH</li>
+                        <li>Revogar todos os acessos imediatamente</li>
+                        <li>Recolher todos os equipamentos</li>
+                        <li>Conferir equipamentos recebidos</li>
+                        <li>Emitir termo de devolução (se conforme)</li>
+                        <li>Notificar RH sobre não conformidades</li>
+                        <li>Enviar documentação ao RH</li>
+                    </ul>
+                    <!-- Added button to start workflow -->
+                    <div class="flow-card-actions">
+                        <button class="btn-start-flow" data-workflow="offboarding">
+                            Iniciar Fluxo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="regras" class="rules-section fade-in">
+        <h2 class="section-title">Regras Gerais de TI</h2>
+        
+        <div class="rule-card">
+            <h3>🔧 Manutenção de Equipamentos</h3>
+            <p>Se um equipamento é retirado para manutenção, ele <strong>deve obrigatoriamente ser devolvido ao mesmo colaborador</strong> após o reparo. Sem exceções.</p>
+        </div>
+
+        <div class="rule-card">
+            <h3>📋 Sistema de Chamados</h3>
+            <p>A TI trabalha por meio de <strong>Tasks solicitadas pelo glpi.greenn.com.br</strong>. Nosso papel é oferecer um suporte calmo e responsável para todas as demandas.</p>
+        </div>
+
+        <div class="rule-card">
+            <h3>💬 Canais de Comunicação</h3>
+            <p>A comunicação referente às tasks pode ocorrer internamente no <strong>GLPI</strong> ou diretamente no <strong>Google Chat</strong>. Lembrando que no Google Chat devem ocorrer somente conversas referentes às tasks - não é possível receber solicitações por lá para manter tudo centralizado no sistema de chamados.</p>
+        </div>
+
+        <div class="rule-card">
+            <h3>✅ Autorização para Ações</h3>
+            <p>A TI <strong>só executa ações em equipamentos ou acessos quando houver solicitação formal via Task de Chamados</strong>. Exceções somente quando a gestão autorizar e comunicar oficialmente.</p>
+        </div>
+    </section>
+
+    <!-- Workflow Modal -->
+    <div class="workflow-modal" id="workflowModal">
+        <div class="workflow-content">
+            <button class="close-modal" id="closeModal">×</button>
+            
+            <div id="workflowProcess">
+                <div class="workflow-header">
+                    <h2 id="workflowTitle"></h2>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <ul class="workflow-steps" id="workflowStepsList"></ul>
+
+                <!-- Added step info display -->
+                <div id="stepInfo" style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(0, 113, 227, 0.05); border-radius: 12px; display: none;">
+                    <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Etapa Atual</p>
+                    <h4 id="currentStepText" style="font-size: 1.125rem; color: var(--color-accent);"></h4>
+                </div>
+
+                <div class="workflow-actions">
+                    <button class="btn btn-primary" id="nextStepBtn">Iniciar Fluxo</button>
+                    <button class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                </div>
+            </div>
+
+            <div class="workflow-report" id="workflowReport">
+                <div class="report-header">
+                    <div class="report-icon">✅</div>
+                    <h3>Fluxo Concluído!</h3>
+                    <p style="color: var(--color-text-secondary);">Relatório de atividades executadas</p>
+                </div>
+
+                <div class="report-content" id="reportContent"></div>
+
+                <div class="workflow-actions">
+                    <button class="btn btn-primary" id="downloadReportBtn">Baixar Relatório</button>
+                    <button class="btn btn-secondary" id="closeReportBtn">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>TI Greenn © 2025 • Suporte técnico responsável e eficiente</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">Acesse: <a href="https://glpi.greenn.com.br" style="color: var(--color-accent); text-decoration: none;">glpi.greenn.com.br</a></p>
+    </footer>
+
+    <script>
+        // Smooth scroll animation on page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(0, 0, 0, 0.95)';
+                navLinks.style.padding = '2rem';
+                navLinks.style.gap = '1rem';
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // Parallax effect on hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Workflow data structure
+        const workflows = {
+            'onboarding-com': {
+                title: 'Onboarding - Com Equipamento',
+                steps: [
+                    'Notificação de contratação pelo RH',
+                    'Criar e vincular acessos (e-mail e permissões)',
+                    'Avaliar e preparar equipamento adequado',
+                    'Configurar sistemas e realizar testes',
+                    'Enviar credenciais ao colaborador',
+                    'Entregar equipamento no dia do onboarding',
+                    'Emitir e enviar termo de responsabilidade'
+                ],
+                icon: '✅'
+            },
+            'onboarding-sem': {
+                title: 'Onboarding - Sem Equipamento',
+                steps: [
+                    'Notificação de contratação pelo RH',
+                    'Criar e vincular acessos',
+                    'Enviar credenciais (e-mail, sistemas e acessos)'
+                ],
+                icon: '✅'
+            },
+            'offboarding': {
+                title: 'Offboarding - Saída de Colaborador',
+                steps: [
+                    'Notificação de desligamento pelo RH',
+                    'Revogar todos os acessos imediatamente',
+                    'Recolher todos os equipamentos',
+                    'Conferir equipamentos recebidos',
+                    'Emitir termo de devolução (se conforme)',
+                    'Notificar RH sobre não conformidades',
+                    'Enviar documentação ao RH'
+                ],
+                icon: '🔥'
+            }
+        };
+
+        // Workflow modal functionality
+        let currentWorkflow = null;
+        let currentStep = -1;
+        let stepStartTime = null;
+
+        const modal = document.getElementById('workflowModal');
+        const workflowProcess = document.getElementById('workflowProcess');
+        const workflowReport = document.getElementById('workflowReport');
+        const closeModalBtn = document.getElementById('closeModal');
+        const nextStepBtn = document.getElementById('nextStepBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const closeReportBtn = document.getElementById('closeReportBtn');
+        const downloadReportBtn = document.getElementById('downloadReportBtn');
+
+        // Open workflow modal
+        document.querySelectorAll('.btn-start-flow').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const workflowType = btn.dataset.workflow;
+                openWorkflow(workflowType);
+            });
+        });
+
+        function openWorkflow(type) {
+            currentWorkflow = workflows[type];
+            currentStep = -1;
+            stepStartTime = null;
+            
+            document.getElementById('workflowTitle').textContent = currentWorkflow.title;
+            
+            const stepsList = document.getElementById('workflowStepsList');
+            stepsList.innerHTML = '';
+            
+            currentWorkflow.steps.forEach((step, index) => {
+                const li = document.createElement('li');
+                li.className = 'workflow-step';
+                li.innerHTML = `
+                    <h4>${step}</h4>
+                    <span class="step-timer" data-step="${index}">⏱ Aguardando</span>
+                `;
+                li.dataset.index = index;
+                stepsList.appendChild(li);
+            });
+
+            document.getElementById('stepInfo').style.display = 'none';
+            workflowProcess.style.display = 'block';
+            workflowReport.classList.remove('active');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            nextStepBtn.textContent = 'Iniciar Fluxo';
+            nextStepBtn.disabled = false;
+            updateProgress();
+        }
+
+        function closeWorkflow() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentWorkflow = null;
+            currentStep = -1;
+            stepStartTime = null;
+        }
+
+        closeModalBtn.addEventListener('click', closeWorkflow);
+        cancelBtn.addEventListener('click', closeWorkflow);
+        closeReportBtn.addEventListener('click', closeWorkflow);
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeWorkflow();
+            }
+        });
+
+        // Next step functionality
+        nextStepBtn.addEventListener('click', () => {
+            if (currentStep < currentWorkflow.steps.length - 1) {
+                if (currentStep >= 0 && stepStartTime) {
+                    const elapsed = Math.floor((Date.now() - stepStartTime) / 1000);
+                    const timer = document.querySelector(`.step-timer[data-step="${currentStep}"]`);
+                    if (timer) {
+                        timer.textContent = `✓ ${elapsed}s`;
+                    }
+                }
+
+                currentStep++;
+                stepStartTime = Date.now();
+                updateWorkflowStep();
+                updateProgress();
+                
+                const stepInfo = document.getElementById('stepInfo');
+                const currentStepText = document.getElementById('currentStepText');
+                stepInfo.style.display = 'block';
+                currentStepText.textContent = currentWorkflow.steps[currentStep];
+                
+                if (currentStep === 0) {
+                    nextStepBtn.textContent = 'Próxima Etapa';
+                }
+                
+                if (currentStep === currentWorkflow.steps.length - 1) {
+                    nextStepBtn.textContent = 'Finalizar Fluxo';
+                }
+            } else {
+                if (stepStartTime) {
+                    const elapsed = Math.floor((Date.now() - stepStartTime) / 1000);
+                    const timer = document.querySelector(`.step-timer[data-step="${currentStep}"]`);
+                    if (timer) {
+                        timer.textContent = `✓ ${elapsed}s`;
+                    }
+                }
+                // Workflow completed
+                showReport();
+            }
+        });
+
+        function updateWorkflowStep() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach((step, index) => {
+                const timer = step.querySelector('.step-timer');
+                if (index < currentStep) {
+                    step.classList.remove('active');
+                    step.classList.add('completed');
+                } else if (index === currentStep) {
+                    step.classList.remove('completed');
+                    step.classList.add('active');
+                    step.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    if (timer) {
+                        timer.textContent = '⏱ Em andamento...';
+                    }
+                } else {
+                    step.classList.remove('active', 'completed');
+                    if (timer) {
+                        timer.textContent = '⏱ Aguardando';
+                    }
+                }
+            });
+        }
+
+        function updateProgress() {
+            const progress = ((currentStep + 1) / currentWorkflow.steps.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showReport() {
+            workflowProcess.style.display = 'none';
+            workflowReport.classList.add('active');
+            
+            const reportContent = document.getElementById('reportContent');
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('pt-BR');
+            const timeStr = now.toLocaleTimeString('pt-BR');
+            
+            const stepTimers = Array.from(document.querySelectorAll('.step-timer')).map(timer => timer.textContent);
+            
+            reportContent.innerHTML = `
+                <div class="report-item">
+                    <span><strong>Fluxo:</strong></span>
+                    <span>${currentWorkflow.title}</span>
+                </div>
+                <div class="report-item">
+                    <span><strong>Data:</strong></span>
+                    <span>${dateStr}</span>
+                </div>
+                <div class="report-item">
+                    <span><strong>Horário:</strong></span>
+                    <span>${timeStr}</span>
+                </div>
+                <div class="report-item">
+                    <span><strong>Total de Etapas:</strong></span>
+                    <span>${currentWorkflow.steps.length}</span>
+                </div>
+                <div class="report-item">
+                    <span><strong>Status:</strong></span>
+                    <span class="report-status">✓ Concluído</span>
+                </div>
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                    <h4 style="margin-bottom: 1rem; color: var(--color-text-secondary);">Etapas Executadas:</h4>
+                    ${currentWorkflow.steps.map((step, index) => `
+                        <div class="report-item">
+                            <span>${index + 1}. ${step}</span>
+                            <span class="report-status">${stepTimers[index] || '✓'}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        downloadReportBtn.addEventListener('click', () => {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('pt-BR').replace(/\//g, '-');
+            const timeStr = now.toLocaleTimeString('pt-BR').replace(/:/g, '-');
+            
+            const stepTimers = Array.from(document.querySelectorAll('.step-timer')).map(timer => timer.textContent);
+            
+            let reportText = `RELATÓRIO DE FLUXO DE TRABALHO\n`;
+            reportText += `${'='.repeat(50)}\n\n`;
+            reportText += `Fluxo: ${currentWorkflow.title}\n`;
+            reportText += `Data: ${dateStr}\n`;
+            reportText += `Horário: ${timeStr}\n`;
+            reportText += `Total de Etapas: ${currentWorkflow.steps.length}\n`;
+            reportText += `Status: Concluído\n\n`;
+            reportText += `ETAPAS EXECUTADAS:\n`;
+            reportText += `${'-'.repeat(50)}\n`;
+            
+            currentWorkflow.steps.forEach((step, index) => {
+                reportText += `${index + 1}. ${step}\n`;
+                reportText += `   Tempo: ${stepTimers[index] || 'N/A'}\n`;
+                reportText += `   Status: ✓ Concluído\n\n`;
+            });
+            
+            reportText += `${'='.repeat(50)}\n`;
+            reportText += `Relatório gerado automaticamente pelo Sistema TI Greenn\n`;
+            
+            const blob = new Blob([reportText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `relatorio-${currentWorkflow.title.toLowerCase().replace(/\s+/g, '-')}-${dateStr}-${timeStr}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        });
+
+        // System cards click handlers
+        document.querySelectorAll('.system-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const system = card.dataset.system;
+                handleSystemClick(system);
+            });
+        });
+
+        function handleSystemClick(system) {
+            const urls = {
+                'glpi': 'https://glpi.greenn.com.br',
+                'jumpcloud': 'https://console.jumpcloud.com',
+                'tutoriais': 'https://drive.google.com/drive/folders/14OUwmt9weLJTEUXjTvIsl4QMScv0T8-g',
+                'scripts': '#scripts'
+            };
+
+            if (system === '' || system === 'scripts') {
+                alert(`Seção de ${system} em desenvolvimento. Em breve disponível!`);
+            } else {
+                window.open(urls[system], '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
