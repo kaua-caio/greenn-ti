@@ -214,7 +214,6 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            /* Added display flex for better card layout */
             display: flex;
             flex-direction: column;
             min-height: 350px;
@@ -234,7 +233,6 @@
         .flow-card:hover {
             transform: scale(1.02);
             border-color: var(--color-accent);
-            /* Added shadow for better hover effect */
             box-shadow: 0 20px 60px rgba(0, 113, 227, 0.3);
         }
 
@@ -243,7 +241,6 @@
             right: 1.5rem;
         }
 
-        /* New styles for better flow card structure */
         .flow-badge {
             display: inline-block;
             padding: 0.5rem 1rem;
@@ -371,24 +368,6 @@
             color: var(--color-text);
             font-size: 1.5rem;
             cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .flow-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .equipment-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
         }
 
         /* Smooth Scroll */
@@ -638,7 +617,6 @@
             background: var(--color-success);
         }
 
-        /* Enhanced workflow modal styles */
         .workflow-step h4 {
             font-size: 1.125rem;
             margin-bottom: 0.5rem;
@@ -769,31 +747,343 @@
             font-weight: 600;
         }
 
+        /* Enhanced responsive design for all screen sizes */
+        /* Tablet breakpoint */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: clamp(2.5rem, 7vw, 4rem);
+            }
+
+            .section-title {
+                font-size: clamp(1.75rem, 4vw, 2.5rem);
+            }
+
+            .equipment-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 1.25rem;
+            }
+
+            .systems-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+
+            .flow-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .equipment-section,
+            .flow-section,
+            .systems-section,
+            .rules-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* Mobile breakpoint */
         @media (max-width: 768px) {
-            .workflow-content {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
                 padding: 2rem;
-                margin: 1rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.125rem;
+                padding: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                min-height: 80vh;
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 10vw, 3rem);
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: clamp(1rem, 4vw, 1.25rem);
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+                margin-bottom: 2rem;
+            }
+
+            .equipment-section,
+            .flow-section,
+            .systems-section,
+            .rules-section {
+                padding: 3rem 1rem;
+            }
+
+            .equipment-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+
+            .equipment-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .equipment-icon {
+                font-size: 2.5rem;
+            }
+
+            .equipment-code {
+                font-size: 1.5rem;
+            }
+
+            .equipment-name {
+                font-size: 0.875rem;
+            }
+
+            .systems-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .system-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .system-icon {
+                font-size: 3rem;
+            }
+
+            .flow-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .flow-card {
+                padding: 2rem 1.5rem;
+                min-height: 300px;
+            }
+
+            .flow-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .flow-card::after {
+                display: none;
+            }
+
+            .flow-card .flow-steps {
+                font-size: 0.8125rem;
+            }
+
+            .rule-card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .rule-card h3 {
+                font-size: 1.25rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .rule-card p {
+                font-size: 0.9375rem;
+            }
+
+            /* Modal responsive styles */
+            .workflow-modal {
+                padding: 1rem;
+                align-items: flex-start;
+            }
+
+            .workflow-content {
+                padding: 1.5rem;
+                margin-top: 2rem;
+                max-height: calc(100vh - 4rem);
+                overflow-y: auto;
+            }
+
+            .close-modal {
+                top: 1rem;
+                right: 1rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.25rem;
+            }
+
+            .workflow-header h2 {
+                font-size: 1.5rem;
+                padding-right: 2rem;
             }
 
             .workflow-step {
+                padding: 1.25rem;
                 padding-left: 4rem;
+                padding-right: 1rem;
+            }
+
+            .workflow-step::before {
+                left: 1rem;
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.875rem;
+            }
+
+            .workflow-step h4 {
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .step-timer {
+                position: static;
+                transform: none;
+                display: block;
+                margin-top: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            #stepInfo {
+                padding: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            #currentStepText {
+                font-size: 1rem;
             }
 
             .workflow-actions {
                 flex-direction: column;
+                margin-top: 2rem;
+                gap: 0.75rem;
             }
 
             .btn {
                 width: 100%;
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9375rem;
+            }
+
+            .report-header {
+                padding: 1.5rem;
+            }
+
+            .report-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .report-icon {
+                font-size: 3rem;
+            }
+
+            .report-content {
+                padding: 1.5rem;
+            }
+
+            .report-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 0.875rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+                font-size: 0.875rem;
             }
         }
+
+        /* Small mobile breakpoint */
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.875rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .hero {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .equipment-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.875rem;
+            }
+
+            .equipment-card {
+                padding: 1.25rem 0.75rem;
+            }
+
+            .flow-badge {
+                font-size: 0.6875rem;
+                padding: 0.375rem 0.75rem;
+            }
+
+            .btn-start-flow {
+                font-size: 0.9375rem;
+                padding: 0.875rem;
+            }
+
+            .workflow-content {
+                border-radius: 16px;
+            }
+
+            .workflow-step {
+                padding-left: 3.5rem;
+            }
+
+            .workflow-step::before {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Landscape mobile optimization */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 5rem 2rem 3rem;
+            }
+
+            .workflow-modal {
+                align-items: flex-start;
+            }
+
+            .workflow-content {
+                margin: 1rem auto;
+            }
+        }
+        /* </CHANGE> */
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">TI Greenn</div>
+            <div class="logo"> TI Greenn</div>
             <ul class="nav-links">
                 <li><a href="#equipamentos">Equipamentos</a></li>
                 <li><a href="#onboarding">Onboarding</a></li>
@@ -809,7 +1099,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Bem-vindo à TI</h1>
-            <p>Criando caminhos através da inovação</p>
+            <p>Suporte responsável e eficiente para todas as suas necessidades tecnológicas</p>
         </div>
     </section>
 
@@ -1043,17 +1333,7 @@
         const navLinks = document.querySelector('.nav-links');
 
         mobileMenuBtn?.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'rgba(0, 0, 0, 0.95)';
-                navLinks.style.padding = '2rem';
-                navLinks.style.gap = '1rem';
-            }
+            navLinks.classList.toggle('active');
         });
 
         // Smooth scroll for navigation links
@@ -1068,7 +1348,7 @@
                     });
                     // Close mobile menu if open
                     if (window.innerWidth <= 768) {
-                        navLinks.style.display = 'none';
+                        navLinks.classList.remove('active');
                     }
                 }
             });
